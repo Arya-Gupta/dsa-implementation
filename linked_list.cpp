@@ -42,7 +42,9 @@ void insertAtTail(int data, Node *&head)
     {
         Node *temp = head;
         while (temp->next)
+        {
             temp = temp->next;
+        }
         Node *newNode = new Node{data};
         temp->next = newNode;
     }
@@ -87,7 +89,9 @@ void insertAtKth(int data, Node *&head, int K)
 
     temp = head;
     for (int i = 1; i < K - 1; i++)
+    {
         temp = temp->next;
+    }
     Node *newNode = new Node{data};
     newNode->next = temp->next;
     temp->next = newNode;
@@ -119,8 +123,16 @@ void insertBeforeValue(int data, Node *&head, int x)
     cout << "Error: The value " << x << " is not present in the linked list" << endl;
 }
 
-void deleteHead()
+void deleteHead(Node *&head)
 {
+    if (!head)
+    {
+        cout << "Error: The linked list is empty" << endl;
+        return;
+    }
+    Node *temp = head;
+    head = head->next;
+    delete temp;
 }
 
 void iterativeReverse()
@@ -268,7 +280,7 @@ void handleDelete(char ch, Node *&head)
     {
     case 'a':
     {
-        deleteHead();
+        deleteHead(head);
         break;
     }
     default:
