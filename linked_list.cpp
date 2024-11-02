@@ -54,12 +54,12 @@ void insertAtKth(int data, Node *&head, int K)
 {
     if (!head && K > 1)
     {
-        cout << "K has invalid value" << endl;
+        cout << "Error: K has invalid value" << endl;
         return;
     }
     else if (K <= 0)
     {
-        cout << "K has invalid value" << endl;
+        cout << "Error: K has invalid value" << endl;
         return;
     }
     else if (K == 1)
@@ -83,7 +83,7 @@ void insertAtKth(int data, Node *&head, int K)
     }
     else if (K > len + 1)
     {
-        cout << "K has invalid value" << endl;
+        cout << "Error: K has invalid value" << endl;
         return;
     }
 
@@ -145,6 +145,7 @@ void deleteTail(Node *&head)
     else if (!head->next)
     {
         deleteHead(head);
+        return;
     }
 
     Node *temp = head;
@@ -152,6 +153,67 @@ void deleteTail(Node *&head)
     {
         temp = temp->next;
     }
+    delete temp->next;
+    temp->next = nullptr;
+}
+
+void deleteAtKth(Node *&head, int K)
+{
+    if (!head || K < 1)
+    {
+        cout << "Error: K has invalid value" << endl;
+        return;
+    }
+    else if (K == 1)
+    {
+        deleteHead(head);
+        return;
+    }
+
+    int count = 0;
+    Node *prev = nullptr, *curr = head;
+    while (curr && count < K - 1)
+    {
+        prev = curr;
+        curr = curr->next;
+        count++;
+    }
+
+    if (!curr)
+    {
+        cout << "Error: K has invalid value" << endl;
+        return;
+    }
+    prev->next = curr->next;
+    delete curr;
+}
+
+void deleteAtValue(Node *&head, int x)
+{
+    if (!head)
+    {
+        cout << "Error: The linked list is empty" << endl;
+        return;
+    }
+    else if (head->data == x)
+    {
+        deleteHead(head);
+        return;
+    }
+
+    Node *prev = nullptr, *curr = head;
+    while (curr)
+    {
+        if (curr->data == x)
+        {
+            prev->next = curr->next;
+            delete curr;
+            return;
+        }
+        prev = curr;
+        curr = curr->next;
+    }
+    cout << "Error: The value " << x << " is not present in the linked list" << endl;
 }
 
 void iterativeReverse()
@@ -287,7 +349,7 @@ void handleInsert(char ch, int n, Node *&head)
     }
     default:
     {
-        cout << "Wrong choice meeeee" << endl;
+        cout << "Wrong choice" << endl;
         break;
     }
     }
@@ -305,6 +367,22 @@ void handleDelete(char ch, Node *&head)
     case 'b':
     {
         deleteTail(head);
+        break;
+    }
+    case 'c':
+    {
+        int K;
+        cout << "The value of K is: ";
+        cin >> K;
+        deleteAtKth(head, K);
+        break;
+    }
+    case 'd':
+    {
+        int x;
+        cout << "The value of x is: ";
+        cin >> x;
+        deleteAtValue(head, x);
         break;
     }
     default:
