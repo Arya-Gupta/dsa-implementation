@@ -135,6 +135,25 @@ void deleteHead(Node *&head)
     delete temp;
 }
 
+void deleteTail(Node *&head)
+{
+    if (!head)
+    {
+        cout << "Error: The linked list is empty" << endl;
+        return;
+    }
+    else if (!head->next)
+    {
+        deleteHead(head);
+    }
+
+    Node *temp = head;
+    while (temp->next->next)
+    {
+        temp = temp->next;
+    }
+}
+
 void iterativeReverse()
 {
 }
@@ -281,6 +300,11 @@ void handleDelete(char ch, Node *&head)
     case 'a':
     {
         deleteHead(head);
+        break;
+    }
+    case 'b':
+    {
+        deleteTail(head);
         break;
     }
     default:
