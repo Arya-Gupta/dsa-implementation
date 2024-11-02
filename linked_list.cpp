@@ -50,13 +50,12 @@ void insertAtTail(int data, Node *&head)
 
 void insertAtKth(int data, Node *&head, int K)
 {
-    if (!head && K == 1)
+    if (!head && K > 1)
     {
-        insertAtHead(data, head);
+        cout << "K has invalid value" << endl;
         return;
     }
-
-    if (K <= 0)
+    else if (K <= 0)
     {
         cout << "K has invalid value" << endl;
         return;
@@ -82,7 +81,7 @@ void insertAtKth(int data, Node *&head, int K)
     }
     else if (K > len + 1)
     {
-        cout << "K has incorrect value" << endl;
+        cout << "K has invalid value" << endl;
         return;
     }
 
@@ -92,6 +91,32 @@ void insertAtKth(int data, Node *&head, int K)
     Node *newNode = new Node{data};
     newNode->next = temp->next;
     temp->next = newNode;
+}
+
+void insertBeforeValue(int data, Node *&head, int x)
+{
+    if (!head)
+    {
+        cout << "Error: The linked list is empty" << endl;
+        return;
+    }
+    else if (head->data == x)
+    {
+        insertAtHead(data, head);
+        return;
+    }
+    Node *temp = head;
+    while (temp->next)
+    {
+        if (temp->next->data == x)
+        {
+            Node *newNode = new Node{data, temp->next};
+            temp->next = newNode;
+            return;
+        }
+        temp = temp->next;
+    }
+    cout << "Error: The value " << x << " is not present in the linked list" << endl;
 }
 
 void deleteHead()
@@ -110,7 +135,7 @@ void printForward(Node *temp)
 {
     if (!temp)
     {
-        cout << "The linked list is empty" << endl;
+        cout << "Error: The linked list is empty" << endl;
         return;
     }
     cout << "The linked list is: ";
@@ -221,9 +246,17 @@ void handleInsert(char ch, int n, Node *&head)
         insertAtKth(n, head, K);
         break;
     }
+    case 'd':
+    {
+        int x;
+        cout << "The value of x is: ";
+        cin >> x;
+        insertBeforeValue(n, head, x);
+        break;
+    }
     default:
     {
-        cout << "Wrong choice" << endl;
+        cout << "Wrong choice meeeee" << endl;
         break;
     }
     }
