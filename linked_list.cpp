@@ -216,11 +216,20 @@ void deleteAtValue(Node *&head, int x)
     cout << "Error: The value " << x << " is not present in the linked list" << endl;
 }
 
-void iterativeReverse()
+void iterativeReverse(Node *&head)
 {
+    Node *prev = nullptr, *curr = head, *next = nullptr;
+    while (curr)
+    {
+        next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+    }
+    head = prev;
 }
 
-void recursiveReverse()
+void recursiveReverse(Node *&head)
 {
 }
 
@@ -240,8 +249,12 @@ void printForward(Node *temp)
     cout << temp->data << endl;
 }
 
-void printReverse()
+void printReverse(Node *&head)
 {
+    if (!head)
+        return;
+    printReverse(head->next);
+    cout << head->data << "->";
 }
 
 int main()
@@ -399,12 +412,12 @@ void handleReverse(char ch, Node *&head)
     {
     case 'a':
     {
-        iterativeReverse();
+        iterativeReverse(head);
         break;
     }
     case 'b':
     {
-        recursiveReverse();
+        recursiveReverse(head);
         break;
     }
     default:
@@ -426,7 +439,7 @@ void handlePrint(char ch, Node *head)
     }
     case 'b':
     {
-        printReverse();
+        printReverse(head);
         break;
     }
     default:
