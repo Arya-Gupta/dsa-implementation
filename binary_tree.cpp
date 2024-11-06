@@ -17,7 +17,7 @@ struct Node
     }
 };
 
-void insert(Node *&root, int data)
+void insertNode(Node *&root, int data)
 {
     if (!root)
     {
@@ -51,6 +51,51 @@ void insert(Node *&root, int data)
             return;
         }
     }
+}
+
+bool searchNodeDfs(Node *root, int data)
+{
+    if (!root)
+    {
+        return false;
+    }
+    if (root->data == data)
+    {
+        return true;
+    }
+    return searchNodeDfs(root->left, data) || searchNodeDfs(root->right, data);
+}
+
+bool searchNodeBfs(Node *root, int data)
+{
+    if (!root)
+    {
+        return false;
+    }
+    queue<Node *> Q;
+    Q.push(root);
+    while (!Q.empty())
+    {
+        Node *temp = Q.front();
+        Q.pop();
+        if (temp->data == data)
+        {
+            return true;
+        }
+        if (temp->left)
+        {
+            Q.push(temp->left);
+        }
+        if (temp->right)
+        {
+            Q.push(temp->right);
+        };
+    }
+    return false;
+}
+
+void deleteNode(Node *&root, int data)
+{
 }
 
 void preOrderTraversal(Node *root)
@@ -119,7 +164,7 @@ int main()
         int choice;
         char ch;
         cout << endl
-             << "1. Insert 2. Delete 3. Preorder traversal 4. Inorder traversal 5. Postorder traversal 6. Level order traversal 7. BFS 8. DFS 9. Exit" << endl;
+             << "1. Insert 2. DFS Search 3. BFS Search 4. Delete 5. Preorder traversal 6. Inorder traversal 7. Postorder traversal 8. Level order traversal 9. Exit" << endl;
         cout
             << "Enter your choice: ";
         cin >> choice;
@@ -130,49 +175,77 @@ int main()
             int n;
             cout << "Enter value to be inserted: ";
             cin >> n;
-            insert(root, n);
+            insertNode(root, n);
             break;
         }
         case 2:
         {
+            int n;
+            cout << "Enter value to be searched: ";
+            cin >> n;
+            if (searchNodeDfs(root, n))
+            {
+                cout << n << " is present in the binary tree" << endl;
+            }
+            else
+            {
+                cout << n << " is not present in the binary tree" << endl;
+            }
             break;
         }
-
         case 3:
         {
-            cout << "The preorder traversal is: ";
-            preOrderTraversal(root);
+            int n;
+            cout << "Enter value to be searched: ";
+            cin >> n;
+            if (searchNodeBfs(root, n))
+            {
+                cout << n << " is present in the binary tree" << endl;
+            }
+            else
+            {
+                cout << n << " is not present in the binary tree" << endl;
+            }
             break;
         }
-
         case 4:
         {
-            cout << "The inorder traversal is: ";
-            inOrderTraversal(root);
+            int n;
+            cout << "Enter value to be deleted: ";
+            cin >> n;
+            deleteNode(root, n);
             break;
         }
 
         case 5:
         {
-            cout << "The postorder traversal is: ";
-            postOrderTraversal(root);
+            cout << "The preorder traversal is: ";
+            preOrderTraversal(root);
+            cout << endl;
             break;
         }
 
         case 6:
         {
-            cout << "The level order traversal is: ";
-            levelOrderTraversal(root);
+            cout << "The inorder traversal is: ";
+            inOrderTraversal(root);
+            cout << endl;
             break;
         }
 
         case 7:
         {
+            cout << "The postorder traversal is: ";
+            postOrderTraversal(root);
+            cout << endl;
             break;
         }
 
         case 8:
         {
+            cout << "The level order traversal is: ";
+            levelOrderTraversal(root);
+            cout << endl;
             break;
         }
 
