@@ -34,12 +34,17 @@ Node *insertNode(Node *root, int data)
     return root;
 }
 
-bool searchNodeDfs(Node *root, int data)
+bool search(Node *root, int data)
 {
-}
-
-bool searchNodeBfs(Node *root, int data)
-{
+    if (!root)
+    {
+        return false;
+    }
+    if (root->data == data)
+    {
+        return true;
+    }
+    return (data > root->data) ? search(root->right, data) : search(root->left, data);
 }
 
 void deleteNode(Node *&root, int data)
@@ -55,7 +60,7 @@ int main()
         int choice;
         char ch;
         cout << endl
-             << "1. Insert 2. DFS Search 3. BFS Search 4. Delete 5. Exit" << endl;
+             << "1. Insert 2. Search 3. Delete 4. Exit" << endl;
         cout
             << "Enter your choice: ";
         cin >> choice;
@@ -74,22 +79,7 @@ int main()
             int n;
             cout << "Enter value to be searched: ";
             cin >> n;
-            if (searchNodeDfs(root, n))
-            {
-                cout << n << " is present in the binary tree" << endl;
-            }
-            else
-            {
-                cout << n << " is not present in the binary tree" << endl;
-            }
-            break;
-        }
-        case 3:
-        {
-            int n;
-            cout << "Enter value to be searched: ";
-            cin >> n;
-            if (searchNodeBfs(root, n))
+            if (search(root, n))
             {
                 cout << n << " is present in the binary tree" << endl;
             }
@@ -100,7 +90,7 @@ int main()
             break;
         }
 
-        case 4:
+        case 3:
         {
             int n;
             cout << "Enter value to be deleted: ";
@@ -109,7 +99,7 @@ int main()
             break;
         }
 
-        case 5:
+        case 4:
         {
             cout << "Exiting...";
             flag = false;
