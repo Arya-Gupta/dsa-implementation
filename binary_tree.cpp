@@ -155,6 +155,24 @@ void levelOrderTraversal(Node *root)
     }
 }
 
+int height(Node *root)
+{
+    if (!root)
+    {
+        return 0;
+    }
+    return max(height(root->left), height(root->right)) + 1;
+}
+
+int countNodes(Node *root)
+{
+    if (!root)
+    {
+        return 0;
+    }
+    return countNodes(root->left) + countNodes(root->right) + 1;
+}
+
 int main()
 {
     Node *root = nullptr;
@@ -164,7 +182,7 @@ int main()
         int choice;
         char ch;
         cout << endl
-             << "1. Insert 2. DFS Search 3. BFS Search 4. Delete 5. Preorder traversal 6. Inorder traversal 7. Postorder traversal 8. Level order traversal 9. Exit" << endl;
+             << "1. Insert 2. DFS Search 3. BFS Search 4. Delete 5. Preorder traversal 6. Inorder traversal 7. Postorder traversal 8. Level order traversal 9. Height 10. Number of nodes 11. Exit" << endl;
         cout
             << "Enter your choice: ";
         cin >> choice;
@@ -250,6 +268,18 @@ int main()
         }
 
         case 9:
+        {
+            cout << "The height of the tree is: " << height(root) << endl;
+            break;
+        }
+
+        case 10:
+        {
+            cout << "The tree has " << countNodes(root) << " nodes" << endl;
+            break;
+        }
+
+        case 11:
         {
             cout << "Exiting...";
             flag = false;
