@@ -5,6 +5,22 @@ using namespace std;
 
 void selectionSort(vector<int> &A)
 {
+    int n = A.size();
+    for (int i = 0; i < n - 1; i++)
+    {
+        int min_idx = i;
+        for (int j = i + 1; j < n; j++)
+        {
+            if (A[j] < A[min_idx])
+            {
+                min_idx = j;
+            }
+        }
+        if (min_idx != i)
+        {
+            swap(A[i], A[min_idx]);
+        }
+    }
 }
 
 int main()
