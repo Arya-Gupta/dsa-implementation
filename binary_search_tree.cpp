@@ -51,6 +51,17 @@ void deleteNode(Node *&root, int data)
 {
 }
 
+void inOrderTraversal(Node *root)
+{
+    if (!root)
+    {
+        return;
+    }
+    inOrderTraversal(root->left);
+    cout << root->data << " ";
+    inOrderTraversal(root->right);
+}
+
 int main()
 {
     Node *root = nullptr;
@@ -60,7 +71,7 @@ int main()
         int choice;
         char ch;
         cout << endl
-             << "1. Insert 2. Search 3. Delete 4. Exit" << endl;
+             << "1. Insert 2. Search 3. Delete 4. Print (Inorder traversal) 5. Exit" << endl;
         cout
             << "Enter your choice: ";
         cin >> choice;
@@ -100,6 +111,14 @@ int main()
         }
 
         case 4:
+        {
+            cout << "The inorder traversal is: ";
+            inOrderTraversal(root);
+            cout << endl;
+            break;
+        }
+
+        case 5:
         {
             cout << "Exiting...";
             flag = false;
