@@ -47,8 +47,60 @@ bool search(Node *root, int data)
     return (data > root->data) ? search(root->right, data) : search(root->left, data);
 }
 
-void deleteNode(Node *&root, int data)
+Node *inorderSuccessor(Node *root)
 {
+    if (!root || !root->right)
+    {
+        return nullptr;
+    }
+    root = root->right;
+    while (root->left)
+    {
+        root = root->left;
+    }
+    return root;
+}
+
+Node *deleteNode(Node *&root, int data)
+{
+    if (!root)
+    {
+        return nullptr;
+    }
+
+    if (data > root->data)
+    {
+        root->right = deleteNode(root->right, data);
+    }
+    else if (data < root->data)
+    {
+        root->left = deleteNode(root->left, data);
+    }
+    else
+    {
+        if (!root->right && !root->left)
+        {
+            delete root;
+            return nullptr;
+        }
+        else if (!root->right)
+        {
+            Node *temp = root->left;
+            delete root;
+            return temp;
+        }
+        else if (!root->left)
+        {
+            Node *temp = root->right;
+            delete root;
+            return temp;
+        }
+
+        Node *successor = inorderSuccessor(root);
+        root->data = successor->data;
+        root->right = deleteNode(root->right, successor->data);
+    }
+    return root;
 }
 
 void inOrderTraversal(Node *root)
