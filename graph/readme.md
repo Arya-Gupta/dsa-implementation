@@ -28,6 +28,13 @@
 
 ## Time and Space Complexities for Adjacency Matrix Representation
 
+### Creating an Adjacency Matrix
+
+- **Time Complexity**: \( O(V^2) \)  
+  An adjacency matrix requires creating a \( V \times V \) matrix, where \( V \) is the number of vertices. This involves allocating memory for \( V^2 \) entries, even if there are no edges yet.
+- **Space Complexity**: \( O(V^2) \)  
+  The adjacency matrix takes up \( O(V^2) \) space, as it needs to store a boolean or integer for every pair of vertices, whether or not an edge exists.
+
 ### Operation: Add Vertex
 
 - **Time Complexity**: \( O(V^2) \)  
@@ -78,6 +85,13 @@
   The matrix itself requires \( O(V^2) \) space to store all edges.
 
 ## Time and Space Complexities for Adjacency List Representation
+
+### Creating an Adjacency List
+
+- **Time Complexity**: \( O(V) \)  
+  An adjacency list requires creating a list for each vertex. For each vertex, a linked list or dynamic array is allocated to store the edges. The creation of these lists takes linear time relative to the number of vertices.
+- **Space Complexity**: \( O(V + E) \)  
+  The space complexity is proportional to \( V + E \), where \( V \) is the number of vertices and \( E \) is the number of edges. Each vertex has a list, and each edge is represented in a list for the source and target vertex.
 
 ### Operation: Add Vertex
 
