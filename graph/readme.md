@@ -6,9 +6,11 @@
 
 - **Undirected graph**: A graph where edges have no direction and connect two vertices bidirectionally.
 
+- **Bidirectional graph**: A graph where each edge has two directions, connecting two vertices in both directions (essentially an undirected graph).
+
 - **Cycles**: A path in a graph that starts and ends at the same vertex without repeating edges.
 
-- **Cyclic graph\***: A graph that contains at least one cycle.
+- **Cyclic graph**: A graph that contains at least one cycle.
 
 - **Acyclic graph**: A graph that does not contain any cycles.
 
