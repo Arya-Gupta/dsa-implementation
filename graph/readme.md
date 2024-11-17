@@ -17,9 +17,9 @@
 - **Degree**: The number of edges connected to a vertex in a graph.
   Total degree of a graph = 2 x E
 
-For directed graphs,
+- For directed graphs,
 
-- **Indegree**: The number of edges coming into a vertex in a directed graph.
-- **Outdegree**: The number of edges going out from a vertex in a directed graph.
+  - **Indegree**: The number of edges coming into a vertex in a directed graph.
+  - **Outdegree**: The number of edges going out from a vertex in a directed graph.
 
 - **Edge weight**: A value assigned to an edge in a graph, representing the cost, distance, or other measure of the connection between two vertices; if not provided, the weight is assumed to be 1.
