@@ -77,14 +77,53 @@
 - **Space Complexity**: \( O(V^2) \)  
   The matrix itself requires \( O(V^2) \) space to store all edges.
 
-### Summary Table
+## Time and Space Complexities for Adjacency List Representation
 
-| **Operation**              | **Time Complexity** | **Space Complexity** |
-| -------------------------- | ------------------- | -------------------- |
-| Add Vertex                 | \( O(V^2) \)        | \( O(V^2) \)         |
-| Add Edge                   | \( O(1) \)          | \( O(1) \)           |
-| Remove Vertex              | \( O(V^2) \)        | \( O(V^2) \)         |
-| Remove Edge                | \( O(1) \)          | \( O(1) \)           |
-| Check Edge Existence       | \( O(1) \)          | \( O(1) \)           |
-| Iterate Over All Neighbors | \( O(V) \)          | \( O(1) \)           |
-| Display Graph              | \( O(V^2) \)        | \( O(V^2) \)         |
+### Operation: Add Vertex
+
+- **Time Complexity**: \( O(1) \)  
+  Adding a vertex involves appending an empty list for the new vertex to the adjacency list.
+- **Space Complexity**: \( O(1) \)  
+  Each new vertex requires storage for a pointer to its adjacency list, but no immediate storage for edges.
+
+### Operation: Add Edge
+
+- **Time Complexity**: \( O(1) \)  
+  Adding an edge involves appending a node to the adjacency list of the corresponding vertex.
+- **Space Complexity**: \( O(1) \)  
+  Each edge adds a single entry in the adjacency list.
+
+### Operation: Remove Vertex
+
+- **Time Complexity**: \( O(V + E) \)  
+  Removing a vertex requires iterating through all adjacency lists to remove references to the vertex and deleting its own list.
+- **Space Complexity**: \( O(V + E) \)  
+  The adjacency list representation must adjust to store edges for the remaining vertices.
+
+### Operation: Remove Edge
+
+- **Time Complexity**: \( O(V) \)  
+  Removing an edge involves searching for the edge in the adjacency list, which may require iterating through a list of size \( O(V) \) in the worst case.
+- **Space Complexity**: \( O(1) \)  
+  No additional space is needed.
+
+### Operation: Check Edge Existence
+
+- **Time Complexity**: \( O(V) \)  
+  Checking for an edge involves searching through the adjacency list of the source vertex, which may take \( O(V) \) in the worst case.
+- **Space Complexity**: \( O(1) \)  
+  No extra space is needed for this operation.
+
+### Operation: Iterate Over All Neighbors of a Vertex
+
+- **Time Complexity**: \( O(\text{Degree of Vertex}) \)  
+  Iterating over neighbors involves traversing the adjacency list of the vertex, which has a size equal to its degree.
+- **Space Complexity**: \( O(1) \)  
+  No additional space is required.
+
+### Operation: Display the Graph
+
+- **Time Complexity**: \( O(V + E) \)  
+  Displaying the graph involves iterating through all vertices and their adjacency lists.
+- **Space Complexity**: \( O(V + E) \)  
+  The adjacency list representation stores edges explicitly for all vertices.
